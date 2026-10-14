@@ -1,5 +1,9 @@
 # Registro vigente de trazabilidad SDD
 
+Actualización posterior: consultar [seguimiento de API y React](seguimiento-api-app.md).
+Las tablas siguientes conservan la foto histórica de la revisión inicial; no representan
+por sí solas el estado de las ramas posteriores.
+
 Foto de revisión: 14 de octubre de 2026. Método y correcciones en [revisión SDD](revision-sdd.md).
 Los enlaces a API están fijados por commit para que una fusión posterior no cambie la evidencia revisada.
 Los documentos de negocio continúan en ambas carpetas originales.

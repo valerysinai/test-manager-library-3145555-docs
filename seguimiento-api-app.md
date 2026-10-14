@@ -1,0 +1,65 @@
+# Seguimiento API y React · 14 de octubre de 2026
+
+Actualiza el estado de implementación sin cambiar historias, criterios, reglas, entidades ni contrato.
+El [registro anterior](registro-sdd.md) y las revisiones conservan su foto histórica; sus pendientes
+deben leerse junto a esta evidencia posterior. Base de docs main 16cba02.
+
+## API
+
+Base main b2fa106: T-01 a T-08 fusionados. Avance feature/api-completion, implementación c4e3d8c,
+evidencia 590a012, pendiente de PR/fusión. El [plan previo](https://github.com/valerysinai/test-manager-library-3145555-api/blob/10c9b1b/evidence/api-completion-plan.md)
+precede al código. La [evidencia de T-09 a T-19](https://github.com/valerysinai/test-manager-library-3145555-api/blob/590a012/evidence/api-completion.md)
+relaciona cada tarea, sus pruebas y sus límites.
+
+| Ejecución sobre c4e3d8c | Resultado consultado | Alcance |
+|---|---|---|
+| [Bootstrap](https://github.com/valerysinai/test-manager-library-3145555-api/actions/runs/38637457502) | Éxito | Núcleo, casos de uso, arquitectura, seguridad/disco y composición |
+| [Schema](https://github.com/valerysinai/test-manager-library-3145555-api/actions/runs/38637457471) | Éxito | PostgreSQL 16, contrato HTTP, concurrencia, arranque, TLS, portadas 2/3 MB e INSERT inválidos por psql |
+| [Quality](https://github.com/valerysinai/test-manager-library-3145555-api/actions/runs/38637457824) | Éxito | Patrones de secretos versionados y ejemplos sintéticos, sin valores en salida |
+
+T-09/10/11 tienen fakes y persistencia/HTTP; T-12/13 usan PostgreSQL real. Se comprobaron los tres
+protocolos concurrentes: último ejemplar 201/409, devolución 200/409 con un único incremento y
+límite global por socio 201/422. T-14/15 usan Argon2id, JWT HS256, Clock y disco reales. T-16 recorre
+rutas/códigos y permisos antes de entrada/existencia; T-17 verifica composición y login tras
+migraciones explícitas de base vacía. T-18 añade ocho CHECK a la inicial: nueve en total, con
+escrituras inválidas rechazadas y reversa/reaplicación. T-19 verifica límites y casos negativos
+mediante la adaptación PHP de las herramientas de referencia.
+
+Las marcas de §4 en ambas copias de data-model.md se actualizan a motor sobre esa ejecución
+Laravel. No se añaden nuevas invariantes. public.migrations sigue siendo metadata plural fuera
+de las seis entidades singulares; no se renombra.
+
+Los hallazgos SDD-02/03/04/09/10 tienen correcciones y evidencia posterior en API: separación de
+alcances de autorización, control de secretos, límites de dependencias/composición, fechas con
+NUL y frontera decimal de portada. La comprobación estática y los recorridos ejecutados no
+certifican ausencia de cualquier defecto o secreto posible.
+
+## React
+
+Base main 07d7b54. Rama feature/app-library. [Plan previo](https://github.com/valerysinai/test-manager-library-3145555-app/blob/3def570/evidence/t-22-plan.md)
+publicado antes del código. [Evidencia](https://github.com/valerysinai/test-manager-library-3145555-app/blob/4ef90a1/evidence/t-22.md)
+de once pruebas locales de cliente/interfaz y build correcto con Node 26.5/npm 11.17.
+La [CI de React con once pruebas](https://github.com/valerysinai/test-manager-library-3145555-app/actions/runs/38639516506)
+pasó sobre 4ef90a1 con compilación y control de patrones de secretos. La rama incorpora después
+formato de código sin cambios funcionales; su resultado final se consulta en el PR.
+
+Se implementan login, permisos, catálogo, socios, préstamo/devolución, vencidos, reporte y alta
+de bibliotecarios. Token solo en memoria, contraseña sin recortar, HTTPS requerido, URLs de
+portadas revocadas y validación definitiva en servidor. Sin nuevas entidades/operaciones de producto.
+
+T-22 tiene implementación y pruebas simuladas; conserva aceptación integrada y QA visual pendientes.
+El navegador integrado no conectó al servidor local. No se presenta CSS responsive como verificación
+visual ejecutada ni los mocks como recorrido completo con Laravel/PostgreSQL.
+
+## Pendientes del sistema
+
+| Tarea/requisito | Evidencia siguiente |
+|---|---|
+| T-20 / RNF-5 | infra: motor vacío, migraciones propiedad de API, React, red, volumen y HTTPS con un comando |
+| T-21 / RNF-1 | tool: datos por API, tres líneas vencidas, reporte y medición con 5.000 libros |
+| T-22 | Recorrido manual/integrado y revisión móvil/escritorio con el despliegue real |
+| T-23 | page: presentación estática independiente de API |
+
+La aprobación de los PR y la evidencia integrada siguen separadas de una suite verde.
+Se conserva el corte de las 11:00 a. m. America/Bogota. Los avances aquí citados son posteriores;
+este seguimiento no cambia elegibilidad ni certifica la entrega completa.

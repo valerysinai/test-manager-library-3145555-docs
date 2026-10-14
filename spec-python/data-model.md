@@ -9,9 +9,10 @@ al motor para saber qué hay, de qué tipo y con qué regla.
 Cada regla lleva una de **tres marcas**: **motor** (la impone la base), **solo dominio** (solo el código),
 **pendiente (T-xx)** (la pone esa tarea de [`tasks.md`](tasks.md)).
 
-**Estado inicial:** estas marcas describen el diseño objetivo, no restricciones ya verificadas.
-Los repositorios de implementación todavía no contienen migraciones. Una marca **motor** solo se
-acredita al ejecutar las consultas de §10 contra PostgreSQL; las pendientes de T-18 conservan su estado.
+**Estado de la adaptación Laravel:** las restricciones se verificaron en PostgreSQL 16 en la rama
+API feature/api-completion c4e3d8c, aún pendiente de fusión. La evidencia de migración, introspección,
+INSERT inválidos por psql y reversa/reaplicación está en [seguimiento de API/React](../seguimiento-api-app.md).
+Esta comprobación no acredita instalaciones Python/.NET ni el despliegue integrado.
 
 ---
 
@@ -142,17 +143,17 @@ operación. El protocolo y sus límites están en [C-01](../decisiones-previas.m
 | `loan_item.loan_id` → `loan.id` CASCADE | FK | **motor** |
 | `loan_item.book_id` → `book.id` RESTRICT | FK | **motor** |
 | `0 <= available_copies <= total_copies` | `ck_book_available_range` | **motor** — última barrera de concurrencia |
-| `total_copies >= 1` | `ck_book_total_positive` | **pendiente (T-18)** · hoy solo dominio |
+| `total_copies >= 1` | `ck_book_total_positive` | **motor** · verificación T-18 de la adaptación Laravel |
 | Único `(loan_id, book_id)` | índice único | **motor** |
-| `role` en (`admin`,`librarian`) | `ck_user_role` | **pendiente (T-18)** · hoy solo dominio |
+| `role` en (`admin`,`librarian`) | `ck_user_role` | **motor** · verificación T-18 de la adaptación Laravel |
 | Máximo 3 sin devolver por socio | — | **solo dominio** (no expresable en un `CHECK`) |
 | Socio con vencidos no pide | — | **solo dominio** |
 | Descontar ejemplar y crear línea son una operación | — | **solo dominio** (una transacción) |
-| ISBN de 13 dígitos en `book` y valor congelado en `loan_item` | `ck_book_isbn_digits`, `ck_loan_item_isbn_digits` | **pendiente (T-18)**; se conserva CA-03.2, sin validación adicional de checksum |
-| Título no vacío tras recortar | `ck_book_title_nonempty` | **pendiente (T-18)**; invariante ya descrita en arquitectura |
-| `cover_key` nula o no vacía | `ck_book_cover_key_nonempty` | **pendiente (T-18)**; CA-03.4 |
-| Nombre de usuario minúsculo, recortado y no vacío | `ck_user_username_normalized` | **pendiente (T-18)**; CA-02.2 |
-| Documento de socio no vacío tras recortar | `ck_member_document_nonempty` | **pendiente (T-18)**; documento obligatorio |
+| ISBN de 13 dígitos en `book` y valor congelado en `loan_item` | `ck_book_isbn_digits`, `ck_loan_item_isbn_digits` | **motor** · T-18; se conserva CA-03.2, sin validación adicional de checksum |
+| Título no vacío tras recortar | `ck_book_title_nonempty` | **motor** · T-18; invariante ya descrita en arquitectura |
+| `cover_key` nula o no vacía | `ck_book_cover_key_nonempty` | **motor** · T-18; CA-03.4 |
+| Nombre de usuario minúsculo, recortado y no vacío | `ck_user_username_normalized` | **motor** · T-18; CA-02.2 |
+| Documento de socio no vacío tras recortar | `ck_member_document_nonempty` | **motor** · T-18; documento obligatorio |
 | Un préstamo tiene 1 a 3 líneas | — | **solo dominio** |
 | Préstamos y devoluciones inmutables salvo `returned_at` | — | **solo dominio** (por ausencia de operación) |
 
