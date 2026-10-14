@@ -51,13 +51,29 @@ T-22 tiene implementación y pruebas simuladas; conserva aceptación integrada y
 El navegador integrado no conectó al servidor local. No se presenta CSS responsive como verificación
 visual ejecutada ni los mocks como recorrido completo con Laravel/PostgreSQL.
 
-## Pendientes del sistema
+## Verificación integrada posterior
+
+Infra feature/infra-library b496573 contiene [evidencia T-20](https://github.com/valerysinai/test-manager-library-3145555-infra/blob/b496573/evidence/t-20.md).
+Su plan 3fa9132 precede a Compose. La
+[CI sobre 05483c3](https://github.com/valerysinai/test-manager-library-3145555-infra/actions/runs/38644922242)
+pasó con API 590a012 y React 47a517d: base vacía antes de migrar, esquema propiedad de API,
+HTTPS confiable, recorrido de navegador real y persistencia tras recrear contenedores.
+La ejecución local también pasó. Se revisaron capturas de catálogo a 1440×1000 y viewport 390×844,
+sin desbordamiento horizontal; no se atribuye esa revisión a todas las pantallas.
+
+El navegador real detectó un fallo de identificación de etiquetas select que no demostraban los
+mocks. Se corrigió label/htmlFor en React y su
+[CI independiente](https://github.com/valerysinai/test-manager-library-3145555-app/actions/runs/38644082451)
+pasó. En la fixture se corrigieron espera de navegación del reporte y conexión TLS nueva tras
+recrear gateway. Se conserva el producto; las correcciones no se disfrazan como nuevas funciones.
+
+## Estado del sistema tras esa verificación
 
 | Tarea/requisito | Evidencia siguiente |
 |---|---|
-| T-20 / RNF-5 | infra: motor vacío, migraciones propiedad de API, React, red, volumen y HTTPS con un comando |
+| T-20 / RNF-5 | Evidencia ejecutable disponible en infra; pendiente revisión/fusión, configuración/certificados se preparan antes del comando de arranque |
 | T-21 / RNF-1 | tool: datos por API, tres líneas vencidas, reporte y medición con 5.000 libros |
-| T-22 | Recorrido manual/integrado y revisión móvil/escritorio con el despliegue real |
+| T-22 | Recorrido automatizado real y capturas del catálogo verificados; demostración manual en feria y revisión completa de pantallas/accesibilidad pendientes |
 | T-23 | page: presentación estática independiente de API |
 
 La aprobación de los PR y la evidencia integrada siguen separadas de una suite verde.
