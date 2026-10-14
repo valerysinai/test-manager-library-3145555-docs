@@ -47,9 +47,9 @@ Se implementan login, permisos, catálogo, socios, préstamo/devolución, vencid
 de bibliotecarios. Token solo en memoria, contraseña sin recortar, HTTPS requerido, URLs de
 portadas revocadas y validación definitiva en servidor. Sin nuevas entidades/operaciones de producto.
 
-T-22 tiene implementación y pruebas simuladas; conserva aceptación integrada y QA visual pendientes.
-El navegador integrado no conectó al servidor local. No se presenta CSS responsive como verificación
-visual ejecutada ni los mocks como recorrido completo con Laravel/PostgreSQL.
+La foto inicial de T-22 tenía implementación/pruebas simuladas y aceptación integrada pendiente.
+El navegador integrado no conectó al servidor local en esa revisión. La ejecución posterior de
+Chromium real y la inspección de capturas se registran a continuación; no se atribuyen a los mocks.
 
 ## Verificación integrada posterior
 
