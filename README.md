@@ -58,6 +58,11 @@ El cierre propuesto de esos puntos está en [decisiones previas a la implementac
 Una decisión documentada no equivale a una tarea de código terminada ni a una prueba ejecutada.
 
 El seguimiento de implementación está en el [registro vigente SDD](registro-sdd.md).
+La foto más reciente está en el [cierre verificado de los seis repositorios](cierre-repositorios.md),
+preparado con un [plan previo](cierre-repositorios-plan.md). Distingue las fusiones observadas,
+la corrección pendiente de App, las pruebas ejecutadas y la aceptación manual aún no acreditada.
+El [seguimiento posterior de API y React](seguimiento-api-app.md) registra las ejecuciones
+anteriores y distingue pruebas simuladas e integración según las revisiones de aquella foto.
 La [revisión del proceso y plan de corrección](revision-sdd.md) distingue evidencias del núcleo,
 aceptación completa por API y resultados pendientes. Antes de continuar un avance, identificar
 sus requisitos, justificar las decisiones y preparar sus escenarios de verificación.
