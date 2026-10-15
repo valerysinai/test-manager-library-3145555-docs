@@ -50,6 +50,13 @@ endpoints); cambian las decisiones de tecnología. Ninguna de las dos es el stac
 
 ## Cómo se lee el spec
 
+Para preparar la presentación y registrar la revisión humana, usar la
+[guía de demostración](guia-demostracion.md), elaborada con su
+[plan previo de aceptación](plan-aceptacion-final.md). Sus casillas no acreditan una ejecución
+hasta que la persona que presenta realice y registre el recorrido.
+La [aceptación ampliada](aceptacion-final.md) registra el defecto de contraste reproducido,
+su corrección y las 42 vistas verificadas sin cambiar el producto.
+
 Antes de implementar en este fork, leer la [auditoría documental](auditoria-documental.md) y la
 [adaptación a React y Laravel](adaptacion-react-laravel.md). Registran correcciones y decisiones
 pendientes sin modificar el alcance del producto ni renombrar entidades.
