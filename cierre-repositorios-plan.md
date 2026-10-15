@@ -27,3 +27,11 @@ La estructura del producto, sus seis entidades y las diferencias singular/plural
 No se certifica el recorrido manual de feria ni accesibilidad completa. Los avances posteriores
 al corte original no alteran su elegibilidad. Los PR quedan para revisión y fusión por la usuaria,
 en inglés y dentro de sus forks. No se envían mensajes a terceros ni se realiza publicación externa.
+
+## Hallazgo durante la validación, antes de corregirlo
+
+El escáner de patrones de API encontró dos ejemplos DATABASE_URL con credenciales incrustadas,
+uno en cada plan.md, línea 27. No se registran sus valores ni se afirma que sean credenciales
+operativas. Se sustituirá el ejemplo literal por una instrucción de suministrar el valor mediante
+entorno, conforme al artículo IX. Se mantienen nombre de variable, obligatoriedad y tecnología;
+la corrección se aplicará simétricamente y se repetirá el control sin excepciones nuevas.
