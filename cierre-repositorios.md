@@ -1,5 +1,9 @@
 # Cierre verificado de los seis repositorios
 
+Foto histórica del cierre anterior. La [aceptación ampliada posterior](aceptacion-final.md)
+confirma sus fusiones y registra la revisión de pantallas, la corrección de contraste y la guía
+de demostración. Los estados de esta tabla corresponden a la consulta que se fecha a continuación.
+
 Foto consultada el 15 de octubre de 2026 UTC (14 de octubre en America/Bogota).
 El [plan de actualización](cierre-repositorios-plan.md), publicado en `b7d11b8`, precede a esta
 foto. Se conserva main de docs `16cba02` como base de `feature/docs-api-completion`.
