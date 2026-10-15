@@ -1,5 +1,9 @@
 # Seguimiento API y React · 14 de octubre de 2026
 
+Esta foto conserva las primeras revisiones de cierre. Las fusiones posteriores, la paginación
+corregida, C-08 concurrente, las mediciones con API final y T-23 están en el
+[cierre actualizado de los seis repositorios](cierre-repositorios.md).
+
 Actualiza el estado de implementación sin cambiar historias, criterios, reglas, entidades ni contrato.
 El [registro anterior](registro-sdd.md) y las revisiones conservan su foto histórica; sus pendientes
 deben leerse junto a esta evidencia posterior. Base de docs main 16cba02.

@@ -24,7 +24,7 @@ Cómo se construye lo que dicen [`spec.md`](spec.md) y [`constitution.md`](const
 
 | Variable | Obligatoria | Ejemplo |
 |---|---|---|
-| `DATABASE_URL` | sí | `postgresql://library:library@db:5432/library` |
+| `DATABASE_URL` | sí | URL de conexión suministrada por entorno; valor privado |
 | `JWT_SECRET` | sí | cadena larga aleatoria |
 | `ADMIN_USERNAME` / `ADMIN_PASSWORD` | sí | definidos en `.env`, nunca en el repo |
 | `COVERS_DIR` | no | `./var/covers` |

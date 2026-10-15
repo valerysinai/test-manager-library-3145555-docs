@@ -46,3 +46,65 @@ sí tiene ahora una corrección de redacción técnica frente a main.
 spec.md, constitution.md, data-model.md, api-contract.md y ADR-001/003/004 siguen sin cambios.
 Los enlaces y la igualdad de los cuatro ADR entre versiones se vuelven a comprobar;
 el análisis de fechas no se presenta como una prueba PHP ejecutada.
+
+## Cierre posterior de los seis repositorios
+
+La foto actual está en [cierre-repositorios.md](cierre-repositorios.md), preparada con plan previo
+`b7d11b8` y precisión de seguridad `d0f3052`. Esta sección complementa las verificaciones históricas.
+
+- 35 archivos Markdown comprobados: cero destinos relativos inexistentes.
+- spec.md, api-contract.md, data-model.md y los cuatro ADR coinciden entre ambas referencias.
+- Las estructuras del modelo, reglas, contrato, nombres y dependencias de tareas se conservan.
+  En el modelo solo se actualizan estado/evidencia de restricciones ya verificadas en API.
+- Se sustituyen dos ejemplos de DATABASE_URL con credenciales incrustadas por instrucciones de
+  entorno. Solo cambia el ejemplo de configuración de esa fila en cada plan; no el requisito.
+- El escáner de patrones del checkout encuentra cero coincidencias después de esa corrección.
+  Antes encontró dos; no se suprimió ninguna regla ni se publicaron los valores encontrados.
+- Se consultaron los main de los seis forks y CI de las revisiones indicadas. La integración local
+  nueva pasó con API main 60bbcdd, infra main f694448 y App 88b20a9; los mocks quedan separados.
+- El diff no contiene errores de espacios. Ningún resultado implica fusión de App/Docs ni feria.
+
+Para reproducir el control de archivos relativos y equivalencia, ejecutar Python desde la raíz
+de docs con el siguiente código (biblioteca estándar; no requiere conexión a la API):
+
+```python
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
+import re
+root = Path.cwd()
+missing = []
+files = list(root.rglob('*.md'))
+for file in files:
+    text = file.read_text(encoding='utf-8')
+    targets = re.findall(r'\]\(([^\s)]+)(?:\s+"[^"]*")?\)', text)
+    targets += re.findall(r'^\[[^\]]+\]:\s*(\S+)', text, flags=re.M)
+    for raw in targets:
+        target = raw.strip('<>')
+        if not target or target.startswith('#') or urlsplit(target).scheme:
+            continue
+        path = unquote(target.split('#', 1)[0])
+        if path and not (file.parent / path).exists():
+            missing.append((str(file.relative_to(root)), path))
+shared = ['spec.md', 'api-contract.md', 'data-model.md']
+shared += ['adr/' + p.name for p in (root / 'spec-python/adr').glob('*.md')]
+different = [name for name in shared if
+    (root / 'spec-python' / name).read_text(encoding='utf-8') !=
+    (root / 'spec-.net' / name).read_text(encoding='utf-8')]
+print(len(files), 'Markdown;', len(missing), 'missing paths;', len(different), 'different shared files')
+raise SystemExit(bool(missing or different))
+```
+
+Para aplicar a Docs el detector ya probado de API, desde la misma raíz:
+
+```python
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path.cwd().parent / 'test-manager-library-3145555-api/scripts'))
+from check_secrets import scan
+findings = scan(Path.cwd())
+print('Tracked pattern findings:', len(findings))
+raise SystemExit(bool(findings))
+```
+
+El detector revisa archivos versionados del checkout, incluidos nuevos documentos después de
+añadirlos al índice Git. No acredita todo el historial remoto ni ausencia de cualquier secreto.

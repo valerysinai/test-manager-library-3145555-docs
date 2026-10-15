@@ -1,6 +1,7 @@
 # Registro vigente de trazabilidad SDD
 
 Actualización posterior: consultar [seguimiento de API y React](seguimiento-api-app.md).
+La foto de cierre más reciente está en [cierre de los seis repositorios](cierre-repositorios.md).
 Las tablas siguientes conservan la foto histórica de la revisión inicial; no representan
 por sí solas el estado de las ramas posteriores.
 

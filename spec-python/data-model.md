@@ -9,9 +9,9 @@ al motor para saber qué hay, de qué tipo y con qué regla.
 Cada regla lleva una de **tres marcas**: **motor** (la impone la base), **solo dominio** (solo el código),
 **pendiente (T-xx)** (la pone esa tarea de [`tasks.md`](tasks.md)).
 
-**Estado de la adaptación Laravel:** las restricciones se verificaron en PostgreSQL 16 en la rama
-API feature/api-completion c4e3d8c, aún pendiente de fusión. La evidencia de migración, introspección,
-INSERT inválidos por psql y reversa/reaplicación está en [seguimiento de API/React](../seguimiento-api-app.md).
+**Estado de la adaptación Laravel:** las restricciones se verificaron en PostgreSQL 16 y están
+integradas en API main `60bbcdd`. Migración, introspección, INSERT inválidos por psql y
+reversa/reaplicación se enlazan con sus revisiones en el [cierre verificado](../cierre-repositorios.md).
 Esta comprobación no acredita instalaciones Python/.NET ni el despliegue integrado.
 
 ---
